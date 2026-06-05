@@ -378,7 +378,7 @@ http://localhost:8080/Details1
 ## 👨‍💻 Author
 
 **Santosh Nesargi**
-LinkedIn[:](https://www.linkedin.com/in/santosh-nesargi)
+LinkedIn[:]https://www.linkedin.com/in/santosh-nesargi
 
 School Management System Project
 
