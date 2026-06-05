@@ -1,0 +1,63 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #eef2f7;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #1e3a8a;
+}
+
+/* CARD DESIGN */
+.card{
+    background:white;
+    padding:25px;
+    margin:20px auto;
+    width:400px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+input, select {
+    padding: 10px;
+    margin: 6px;
+    width: 220px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.green { background: #22c55e; }
+.green:hover { background: #16a34a; }
+
+.blue { background: #2563eb; }
+.blue:hover { background: #1d4ed8; }
+
+.orange { background: #f59e0b; }
+.orange:hover { background: #d97706; }
+
+/* LOGOUT */
+.logout {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}

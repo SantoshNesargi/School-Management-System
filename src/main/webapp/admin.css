@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    width: 260px;
+    height: 100vh; 	
+    background: #0f172a;
+    padding: 25px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.25);
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #1e293b;
+    color: white;
+    font-size: 15px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.sidebar button:hover {
+    background: #2563eb;
+    transform: translateX(6px);
+}
+
+/* ================= MAIN ================= */
+.main {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h1 {
+    margin-bottom: 25px;
+    color: #0f172a;
+    font-size: 34px;
+    font-weight: 700;
+}
+
+/* ================= CARD ================= */
+.card {
+    width: 460px;
+    background: white;
+    padding: 35px;
+
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+
+    animation: fadeIn 0.3s ease;
+    margin-top: 20px;
+}
+
+/* ❗ IMPORTANT FIX */
+.hidden {
+    display: none !important;
+}
+
+/* ================= HEADINGS ================= */
+.card h3 {
+    text-align: center;
+    margin-bottom: 25px;
+
+    color: #2563eb;
+    font-size: 26px;
+}
+
+/* ================= INPUT ================= */
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 12px rgba(37,99,235,0.25);
+    outline: none;
+}
+
+/* ================= BUTTON ================= */
+form button {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+}
+
+/* ================= VIEW BUTTON ================= */
+.view-btn {
+    all: unset;                 /* removes ALL previous button styles */
+    display: block;
+    margin: 20px auto;
+
+    width: 80%;
+    padding: 14px;
+
+    background: #ef4444 !important;  /* RED */
+    color: white !important;
+
+    text-align: center;
+    border-radius: 12px;
+
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.view-btn:hover {
+    background: #dc2626 !important;
+    transform: scale(1.02);
+}
+
+
+/* ================= RESULT ================= */
+#resultArea {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.msg-box {
+    background: #dbeafe;
+    color: #1e3a8a;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ================= TABLE ================= */
+.table-wrapper {
+    margin-top: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+th {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 14px;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+tr:hover {
+    background: #dbeafe;
+}
+/* log out button */
+.logout-form{
+    margin-top:20px;
+}
+
+.logout-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+    transform:translateX(6px);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
