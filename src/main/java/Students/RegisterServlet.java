@@ -1,7 +1,5 @@
 package Students;
 
-
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +22,9 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
+        // Hash the password before storing
+        String hashedPassword = PasswordUtil.hashPassword(password);
+
         try {
 
             Connection con = Jdbc.getConnection();
@@ -33,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             );
 
             ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(2, hashedPassword);
             ps.setString(3, role);
 
             int i = ps.executeUpdate();
@@ -48,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.getWriter().println("<h2>Error: " + e.getMessage() + "</h2>");
+            response.getWriter().println("<h2>Registration failed. Please try again.</h2>");
         }
     }
 }

@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import Students.HtmlUtil;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -78,10 +80,10 @@ public class server extends HttpServlet {
                     out.println("<tr><th>ID</th><th>Name</th><th>Class</th><th>Age</th></tr>");
 
                     out.println("<tr>");
-                    out.println("<td>" + rs.getInt("id") + "</td>");
-                    out.println("<td>" + rs.getString("name") + "</td>");
-                    out.println("<td>" + rs.getString("class") + "</td>");
-                    out.println("<td>" + rs.getInt("age") + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("name")) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("age"))) + "</td>");
                     out.println("</tr>");
 
                     out.println("</table>");
@@ -121,10 +123,10 @@ public class server extends HttpServlet {
                 while (rs.next()) {
                     response.getWriter().println(
                         "<tr>" +
-                        "<td>" + rs.getInt("id") + "</td>" +
-                        "<td>" + rs.getString("name") + "</td>" +
-                        "<td>" + rs.getString("class") + "</td>" +
-                        "<td>" + rs.getInt("age") + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("name")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("age"))) + "</td>" +
                         "</tr>"
                     );
                 }
@@ -162,10 +164,10 @@ public class server extends HttpServlet {
                 while (rs.next()) {
                     response.getWriter().println(
                         "<tr>" +
-                        "<td>" + rs.getInt("id") + "</td>" +
-                        "<td>" + rs.getString("name") + "</td>" +
-                        "<td>" + rs.getString("class") + "</td>" +
-                        "<td>" + rs.getInt("age") + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("name")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("age"))) + "</td>" +
                         "</tr>"
                     );
                 }
@@ -196,7 +198,7 @@ public class server extends HttpServlet {
                 response.getWriter().println("td{text-align:center;padding:10px;border:1px solid #ddd;}");
                 response.getWriter().println("</style></head><body>");
 
-                response.getWriter().println("<h2 style='text-align:center;'>Class Timetable - " + cls + "</h2>");
+                response.getWriter().println("<h2 style='text-align:center;'>Class Timetable - " + HtmlUtil.escapeHtml(cls) + "</h2>");
 
                 response.getWriter().println("<table>");
                 
@@ -205,10 +207,10 @@ public class server extends HttpServlet {
                 while (rs.next()) {
                     response.getWriter().println(
                         "<tr>" +
-                        "<td>" + rs.getInt("id") + "</td>" +
-                        "<td>" + rs.getString("day") + "</td>" +
-                        "<td>" + rs.getString("subject") + "</td>" +
-                        "<td>" + rs.getString("time") + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("day")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>" +
                         "</tr>"
                     );
                 }
@@ -239,7 +241,7 @@ public class server extends HttpServlet {
                 response.getWriter().println("td{text-align:center;padding:10px;border:1px solid #ddd;}");
                 response.getWriter().println("</style></head><body>");
 
-                response.getWriter().println("<h2 style='text-align:center;'>Exam Timetable - " + cls + "</h2>");
+                response.getWriter().println("<h2 style='text-align:center;'>Exam Timetable - " + HtmlUtil.escapeHtml(cls) + "</h2>");
 
                 response.getWriter().println("<table>");
                 response.getWriter().println("<tr><th>ID</th><th>Subject</th><th>Date</th><th>Time</th></tr>");
@@ -247,10 +249,10 @@ public class server extends HttpServlet {
                 while (rs.next()) {
                     response.getWriter().println(
                         "<tr>" +
-                        "<td>" + rs.getInt("id") + "</td>" +
-                        "<td>" + rs.getString("subject") + "</td>" +
-                        "<td>" + rs.getDate("exam_date") + "</td>" +
-                        "<td>" + rs.getString("time") + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getDate("exam_date").toString()) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>" +
                         "</tr>"
                     );
                 }
@@ -305,10 +307,10 @@ public class server extends HttpServlet {
 
                     response.getWriter().println(
                             "<tr>" +
-                            "<td>" + rs.getInt("id") + "</td>" +
-                            "<td>" + rs.getString("name") + "</td>" +
-                            "<td>" + rs.getString("class") + "</td>" +
-                            "<td>" + rs.getInt("age") + "</td>" +
+                            "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("name")) + "</td>" +
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>" +
+                            "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("age"))) + "</td>" +
                             "</tr>");
                 }
 
@@ -326,49 +328,7 @@ public class server extends HttpServlet {
                 response.getWriter().println("</body>");
                 response.getWriter().println("</html>");
             }
-         // ================= VIEW CLASS TIMETABLE (NEW PAGE) =================
-            else if ("viewClassTTPage".equals(action)) {
-
-                String cls = request.getParameter("class");
-
-                PreparedStatement ps = con.prepareStatement(
-                        "SELECT * FROM class_timetable WHERE class=?");
-                ps.setString(1, cls);
-
-                ResultSet rs = ps.executeQuery();
-
-                response.setContentType("text/html");
-
-                response.getWriter().println("<html><head><title>Class Timetable</title>");
-                response.getWriter().println("<style>");
-                response.getWriter().println("body{font-family:Arial;background:#f4f4f4;text-align:center;}");
-                response.getWriter().println("table{margin:auto;width:80%;border-collapse:collapse;background:white;}");
-                response.getWriter().println("th{background:#2563eb;color:white;padding:10px;}");
-                response.getWriter().println("td{padding:10px;border:1px solid #ddd;}");
-                response.getWriter().println("</style></head><body>");
-
-                response.getWriter().println("<h2>Class Timetable - " + cls + "</h2>");
-
-                response.getWriter().println("<table>");
-                response.getWriter().println("<tr><th>ID</th><th>Class</th><th>Subject</th><th>Date</th><th>Time</th></tr>");
-
-                while (rs.next()) {
-                    response.getWriter().println(
-                        "<tr>" +
-                        "<td>" + rs.getInt("id") + "</td>" +
-                        "<td>" + rs.getString("class") + "</td>" +
-                        "<td>" + rs.getString("subject") + "</td>" +
-                        "<td>" + rs.getString("day") + "</td>" +
-                        "<td>" + rs.getString("time") + "</td>" +
-                        "</tr>"
-                    );
-                }
-
-                response.getWriter().println("</table>");
-                response.getWriter().println("<br><a href='admin.jsp'>Back</a>");
-                response.getWriter().println("</body></html>");
-            }
-         // ================= VIEW EXAM TIMETABLE (NEW PAGE) =================
+                  // ================= VIEW EXAM TIMETABLE (NEW PAGE) =================
             else if ("viewExamTTPage".equals(action)) {
 
                 String cls = request.getParameter("class");
@@ -389,7 +349,7 @@ public class server extends HttpServlet {
                 response.getWriter().println("td{padding:10px;border:1px solid #ddd;}");
                 response.getWriter().println("</style></head><body>");
 
-                response.getWriter().println("<h2>Exam Timetable - " + cls + "</h2>");
+                response.getWriter().println("<h2>Exam Timetable - " + HtmlUtil.escapeHtml(cls) + "</h2>");
 
                 response.getWriter().println("<table>");
                 response.getWriter().println("<tr><th>ID</th><th>Class</th><th>Subject</th><th>Date</th><th>Time</th></tr>");
@@ -397,11 +357,11 @@ public class server extends HttpServlet {
                 while (rs.next()) {
                     response.getWriter().println(
                         "<tr>" +
-                        "<td>" + rs.getInt("id") + "</td>" +
-                        "<td>" + rs.getString("class") + "</td>" +
-                        "<td>" + rs.getString("subject") + "</td>" +
-                        "<td>" + rs.getString("exam_date") + "</td>" +
-                        "<td>" + rs.getString("time") + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("exam_date")) + "</td>" +
+                        "<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>" +
                         "</tr>"
                     );
                 }

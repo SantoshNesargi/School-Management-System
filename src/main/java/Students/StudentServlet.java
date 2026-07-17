@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+import Students.HtmlUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -89,16 +91,16 @@ public class StudentServlet extends HttpServlet {
                     response.getWriter().println("<table>");
 
                     response.getWriter().println("<tr><th>ID</th><td>"
-                            + rs.getInt("id") + "</td></tr>");
+                            + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td></tr>");
 
                     response.getWriter().println("<tr><th>Name</th><td>"
-                            + rs.getString("name") + "</td></tr>");
+                            + HtmlUtil.escapeHtml(rs.getString("name")) + "</td></tr>");
 
                     response.getWriter().println("<tr><th>Class</th><td>"
-                            + rs.getString("class") + "</td></tr>");
+                            + HtmlUtil.escapeHtml(rs.getString("class")) + "</td></tr>");
 
                     response.getWriter().println("<tr><th>Age</th><td>"
-                            + rs.getString("age") + "</td></tr>");
+                            + HtmlUtil.escapeHtml(rs.getString("age")) + "</td></tr>");
 
                     response.getWriter().println("</table>");
 
@@ -165,7 +167,7 @@ public class StudentServlet extends HttpServlet {
                     response.getWriter().println("<tr>");
 
                     response.getWriter().println("<td>"
-                            + rs.getString("subject")
+                            + HtmlUtil.escapeHtml(rs.getString("subject"))
                             + "</td>");
 
                     response.getWriter().println("<td>"
@@ -244,15 +246,15 @@ public class StudentServlet extends HttpServlet {
 
                     response.getWriter().println(
                             "<tr><th>Total Days</th><td>"
-                            + total + "</td></tr>");
+                            + HtmlUtil.escapeHtml(String.valueOf(total)) + "</td></tr>");
 
                     response.getWriter().println(
                             "<tr><th>Present Days</th><td>"
-                            + present + "</td></tr>");
+                            + HtmlUtil.escapeHtml(String.valueOf(present)) + "</td></tr>");
 
                     response.getWriter().println(
                             "<tr><th>Absent Days</th><td>"
-                            + (total - present) + "</td></tr>");
+                            + HtmlUtil.escapeHtml(String.valueOf(total - present)) + "</td></tr>");
 
                     response.getWriter().println("</table>");
 
@@ -329,13 +331,13 @@ public class StudentServlet extends HttpServlet {
                     response.getWriter().println("<tr>");
 
                     response.getWriter().println(
-                            "<td>" + rs.getString("subject") + "</td>");
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>");
 
                     response.getWriter().println(
-                            "<td>" + rs.getString("exam_date") + "</td>");
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("exam_date")) + "</td>");
 
                     response.getWriter().println(
-                            "<td>" + rs.getString("time") + "</td>");
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>");
 
                     response.getWriter().println("</tr>");
                 }
@@ -409,7 +411,7 @@ public class StudentServlet extends HttpServlet {
                 response.getWriter().println("<h2>🏫 Class Timetable</h2>");
 
                 response.getWriter().println(
-                        "<div class='className'>Class : " + className + "</div>");
+                        "<div class='className'>Class : " + HtmlUtil.escapeHtml(className) + "</div>");
 
                 response.getWriter().println("<table>");
 
@@ -430,16 +432,16 @@ public class StudentServlet extends HttpServlet {
                     response.getWriter().println("<tr>");
 
                     response.getWriter().println(
-                            "<td>" + rs.getString("subject") + "</td>");
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>");
 
                     response.getWriter().println(
-                            "<td>" + rs.getString("day") + "</td>");
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("day")) + "</td>");
 
                     response.getWriter().println(
-                            "<td>" + rs.getString("time") + "</td>");
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>");
 
                     response.getWriter().println(
-                            "<td>" + rs.getString("class") + "</td>");
+                            "<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>");
 
                     response.getWriter().println("</tr>");
                 }

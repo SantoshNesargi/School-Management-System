@@ -24,42 +24,42 @@ public class LoginServlet extends HttpServlet {
             Connection con = Jdbc.getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                "SELECT * FROM user WHERE username=? AND password=?"
+                "SELECT * FROM user WHERE username=?"
             );
 
             ps.setString(1, username);
-            ps.setString(2, password);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-
+                String dbPassword = rs.getString("password");
                 String dbRole = rs.getString("role");
 
-                HttpSession session = request.getSession();
-                session.setAttribute("user", username);
-                session.setAttribute("role", dbRole);
-          
+                // Verify the password
+                if (PasswordUtil.verifyPassword(password, dbPassword)) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", username);
+                    session.setAttribute("role", dbRole);
 
-                if ("ADMIN".equalsIgnoreCase(dbRole)) {
-                    response.sendRedirect("admin.jsp");
+                    if ("ADMIN".equalsIgnoreCase(dbRole)) {
+                        response.sendRedirect("admin.jsp");
+                    } else if ("TEACHER".equalsIgnoreCase(dbRole)) {
+                        response.sendRedirect("teacher.jsp");
+                    } else if ("STUDENT".equalsIgnoreCase(dbRole)) {
+                        response.sendRedirect("student.jsp");
+                    } else {
+                        response.getWriter().println("Invalid role");
+                    }
+                } else {
+                    response.getWriter().println("Invalid username or password");
                 }
-                else if ("TEACHER".equalsIgnoreCase(dbRole)) {
-                    response.sendRedirect("teacher.jsp");
-                }
-                else if ("STUDENT".equalsIgnoreCase(dbRole)) {
-                    response.sendRedirect("student.jsp");
-                }
-                else {
-                    response.getWriter().println("ROLE NOT FOUND IN DB: " + dbRole);
-                }
-
             } else {
                 response.getWriter().println("Invalid username or password");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            response.getWriter().println("An error occurred. Please try again later.");
         }
     }
 }

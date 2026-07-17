@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+import Students.HtmlUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -64,7 +66,7 @@ public class TeacherServlet extends HttpServlet {
                 response.getWriter().println("td{text-align:center;padding:10px;border:1px solid #ddd;}");
                 response.getWriter().println("</style></head><body>");
 
-                response.getWriter().println("<h2 style='text-align:center;'>Student Class Details " + className +"</h2>");
+                response.getWriter().println("<h2 style='text-align:center;'>Student Class Details " + HtmlUtil.escapeHtml(className) +"</h2>");
                
 
                 response.getWriter().println("<table>");
@@ -73,10 +75,10 @@ public class TeacherServlet extends HttpServlet {
 
                 while (rs.next()) {
                     out.println("<tr>");
-                    out.println("<td>" + rs.getInt("id") + "</td>");
-                    out.println("<td>" + rs.getString("name") + "</td>");
-                    out.println("<td>" + rs.getString("class") + "</td>");
-                    out.println("<td>" + rs.getString("age") + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("name")) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("age")) + "</td>");
                     out.println("</tr>");
                 }
 
@@ -111,7 +113,7 @@ public class TeacherServlet extends HttpServlet {
                 response.getWriter().println("td{text-align:center;padding:10px;border:1px solid #ddd;}");
                 response.getWriter().println("</style></head><body>");
 
-                response.getWriter().println("<h2 style='text-align:center;'>Exam Timetable -  " + className +"</h2>");
+                response.getWriter().println("<h2 style='text-align:center;'>Exam Timetable -  " + HtmlUtil.escapeHtml(className) +"</h2>");
 
                 response.getWriter().println("<table>");
                 response.getWriter().println("<tr><th>ID</th><th>Subject</th><th>Date</th><th>Time</th></tr>");
@@ -119,10 +121,10 @@ public class TeacherServlet extends HttpServlet {
 
                 while (rs.next()) {
                     out.println("<tr>");
-                    out.println("<td>" + rs.getInt("id") + "</td>");
-                    out.println("<td>" + rs.getString("subject") + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>");
                     out.println("<td>" + rs.getDate("exam_date") + "</td>");
-                    out.println("<td>" + rs.getString("time") + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>");
                     out.println("</tr>");
                 }
 
@@ -162,7 +164,7 @@ public class TeacherServlet extends HttpServlet {
                 response.getWriter().println("td{text-align:center;padding:10px;border:1px solid #ddd;}");
                 response.getWriter().println("</style></head><body>");
 
-                response.getWriter().println("<h2 style='text-align:center;'>Class Timetable -  " + className +"</h2>");
+                response.getWriter().println("<h2 style='text-align:center;'>Class Timetable -  " + HtmlUtil.escapeHtml(className) +"</h2>");
 
                 response.getWriter().println("<table>");
                 response.getWriter().println("<tr><th>ID</th><th>Class</th><th>Subject</th><th>Day</th><th>Time</th></tr>");
@@ -174,11 +176,11 @@ public class TeacherServlet extends HttpServlet {
 
                 while (rs.next()) {
                     out.println("<tr>");
-                    out.println("<td>" + rs.getInt("id") + "</td>");
-                    out.println("<td>" + rs.getString("class") + "</td>");
-                    out.println("<td>" + rs.getString("subject") + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>");
                     out.println("<td>" + rs.getString("day") + "</td>");
-                    out.println("<td>" + rs.getString("time") + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>");
                     out.println("</tr>");
                 }
 
@@ -215,7 +217,7 @@ public class TeacherServlet extends HttpServlet {
                     con.close();
 
                 } catch (Exception e) {
-                    out.println("<h3 style='color:red;'>Error: " + e.getMessage() + "</h3>");
+                    out.println("<h3 style='color:red;'>Error: " + HtmlUtil.escapeHtml(e.getMessage()) + "</h3>");
                 }
             }
             // ================= VIEW MARKS =================
@@ -276,10 +278,10 @@ public class TeacherServlet extends HttpServlet {
 
                     out.println("<tr>");
 
-                    out.println("<td>" + rs.getInt("id") + "</td>");
-                    out.println("<td>" + rs.getString("name") + "</td>");
-                    out.println("<td>" + rs.getString("class") + "</td>");
-                    out.println("<td>" + rs.getString("subject") + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("name")) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>");
+                    out.println("<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>");
                     out.println("<td>" + rs.getInt("marks") + "</td>");
 
                     out.println("</tr>");
@@ -419,10 +421,10 @@ public class TeacherServlet extends HttpServlet {
                     response.getWriter().println("<tr><th>Student ID</th><th>Present Days</th><th>Total Days</th><th>Percentage</th></tr>");
 
                     response.getWriter().println("<tr>");
-                    response.getWriter().println("<td>" + sid + "</td>");
-                    response.getWriter().println("<td>" + rs.getInt("present_days") + "</td>");
-                    response.getWriter().println("<td>" + rs.getInt("total_days") + "</td>");
-                    response.getWriter().println("<td>" + String.format("%.2f", rs.getDouble("percentage")) + "%</td>");
+                    response.getWriter().println("<td>" + HtmlUtil.escapeHtml(String.valueOf(sid)) + "</td>");
+                    response.getWriter().println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("present_days"))) + "</td>");
+                    response.getWriter().println("<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("total_days"))) + "</td>");
+                    response.getWriter().println("<td>" + HtmlUtil.escapeHtml(String.format("%.2f", rs.getDouble("percentage"))) + "%</td>");
                     response.getWriter().println("</tr>");
 
                     response.getWriter().println("</table>");
