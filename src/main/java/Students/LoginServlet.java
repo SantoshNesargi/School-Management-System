@@ -26,24 +26,19 @@ public class LoginServlet extends HttpServlet {
             Connection con = Jdbc.getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-<<<<<<< Updated upstream
-                "SELECT * FROM user WHERE username=?"
-            );
-=======
-                    "SELECT * FROM user WHERE username=? AND password=?");
->>>>>>> Stashed changes
-
+                    "SELECT * FROM user WHERE username=?");
             ps.setString(1, username);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+
                 String dbPassword = rs.getString("password");
                 String dbRole = rs.getString("role");
 
-<<<<<<< Updated upstream
-                // Verify the password
+                // Verify hashed password
                 if (PasswordUtil.verifyPassword(password, dbPassword)) {
+
                     HttpSession session = request.getSession();
                     session.setAttribute("user", username);
                     session.setAttribute("role", dbRole);
@@ -57,28 +52,18 @@ public class LoginServlet extends HttpServlet {
                     } else {
                         response.getWriter().println("Invalid role");
                     }
+
                 } else {
                     response.getWriter().println("Invalid username or password");
                 }
-=======
-                HttpSession session = request.getSession();
-                session.setAttribute("user", username);
-                session.setAttribute("role", dbRole);
 
-                if ("ADMIN".equalsIgnoreCase(dbRole)) {
-                    response.sendRedirect("admin.jsp");
-                } else if ("TEACHER".equalsIgnoreCase(dbRole)) {
-                    response.sendRedirect("teacher.jsp");
-                } else if ("STUDENT".equalsIgnoreCase(dbRole)) {
-                    response.sendRedirect("student.jsp");
-                } else {
-                    response.getWriter().println("ROLE NOT FOUND IN DB: " + dbRole);
-                }
-
->>>>>>> Stashed changes
             } else {
                 response.getWriter().println("Invalid username or password");
             }
+
+            rs.close();
+            ps.close();
+            con.close();
 
         } catch (Exception e) {
             e.printStackTrace();
