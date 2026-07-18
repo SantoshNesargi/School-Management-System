@@ -6,8 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+<<<<<<< Updated upstream
 import Students.HtmlUtil;
 
+=======
+import jakarta.servlet.ServletException;
+>>>>>>> Stashed changes
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +31,7 @@ public class server extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws IOException {
+                         HttpServletResponse response) throws ServletException,IOException {
 
         response.setContentType("text/html");
 
