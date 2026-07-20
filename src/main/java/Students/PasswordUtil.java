@@ -5,15 +5,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 /**
- * Utility class for password hashing and verification
+ * @deprecated Use {@link Students.util.PasswordUtil2} instead. The unsalted
+ * SHA-256 hashing in this class is vulnerable to rainbow-table attacks and
+ * is kept only so the login flow can transparently upgrade legacy password
+ * rows.
  */
+@Deprecated
 public class PasswordUtil {
 
-    /**
-     * Hashes a password using SHA-256
-     * @param password The plain text password
-     * @return The hashed password as a Base64 encoded string
-     */
     public static String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -24,12 +23,6 @@ public class PasswordUtil {
         }
     }
 
-    /**
-     * Verifies a password against a hashed password
-     * @param password The plain text password to verify
-     * @param hashedPassword The hashed password to compare against
-     * @return true if the password matches, false otherwise
-     */
     public static boolean verifyPassword(String password, String hashedPassword) {
         String hashedInput = hashPassword(password);
         return hashedInput.equals(hashedPassword);

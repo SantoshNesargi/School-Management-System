@@ -445,24 +445,43 @@ public class TeacherServlet extends HttpServlet {
             // to get auto metic name ================
             else if ("getStudentName".equals(action)) {
 
+                String sidParam = request.getParameter("student_id");
+                response.setContentType("application/json");
+
+                if (sidParam == null || sidParam.trim().isEmpty()) {
+                    out.println("{\"name\":\"\",\"class\":\"\"}");
+                    return;
+                }
+
                 Connection con = Jdbc.getConnection();
 
-                int sid = Integer.parseInt(request.getParameter("student_id"));
-
                 PreparedStatement ps = con.prepareStatement(
-                    "SELECT name FROM student WHERE id=?"
+                    "SELECT name, class FROM student WHERE id=?"
                 );
 
-                ps.setInt(1, sid);
+                try {
+                    ps.setInt(1, Integer.parseInt(sidParam));
+                } catch (NumberFormatException nfe) {
+                    out.println("{\"name\":\"\",\"class\":\"\"}");
+                    return;
+                }
 
                 ResultSet rs = ps.executeQuery();
 
                 if (rs.next()) {
-                    out.println(rs.getString("name"));
+                    out.println(
+                        "{\"name\":\""
+                      + HtmlUtil.escapeHtml(rs.getString("name")).replace("\"", "\\\"")
+                      + "\",\"class\":\""
+                      + HtmlUtil.escapeHtml(rs.getString("class")).replace("\"", "\\\"")
+                      + "\"}"
+                    );
                 } else {
-                    out.println("Not Found");
+                    out.println("{\"name\":\"\",\"class\":\"\"}");
                 }
 
+                rs.close();
+                ps.close();
                 con.close();
             }
 
