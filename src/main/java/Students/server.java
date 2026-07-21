@@ -140,48 +140,11 @@ public class server extends HttpServlet {
                 response.getWriter().println("</body></html>");
             }
            //======================view by class ===================
-            
-            if ("search".equals(action)) {
 
-                int cls = Integer.parseInt(request.getParameter("class"));
+            // (duplicate "search" block removed — it was unreachable because the
+            //  earlier search branch already handles the action. class is VARCHAR
+            //  in the schema, so it must be set with setString, not setInt.)
 
-                PreparedStatement ps = con.prepareStatement(
-                        "SELECT * FROM student WHERE class=?");
-                ps.setInt(1, cls);
-
-                ResultSet rs = ps.executeQuery();
-
-                response.setContentType("text/html");
-                response.getWriter().println("<html><head><title>Students</title>");
-                response.getWriter().println("<style>");
-                response.getWriter().println("body{font-family:Arial;background:#f4f4f4;}");
-                response.getWriter().println("table{width:80%;margin:auto;border-collapse:collapse;background:white;}");
-                response.getWriter().println("th{background:#2563eb;color:white;padding:10px;}");
-                response.getWriter().println("td{text-align:center;padding:10px;border:1px solid #ddd;}");
-                response.getWriter().println("</style></head><body>");
-
-                response.getWriter().println("<h2 style='text-align:center;'>Student Details</h2>");
-
-                response.getWriter().println("<table>");
-                response.getWriter().println("<tr><th>ID</th><th>Name</th><th>Class</th><th>Age</th></tr>");
-
-                while (rs.next()) {
-                    response.getWriter().println(
-                        "<tr>" +
-                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
-                        "<td>" + HtmlUtil.escapeHtml(rs.getString("name")) + "</td>" +
-                        "<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>" +
-                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("age"))) + "</td>" +
-                        "</tr>"
-                    );
-                }
-
-                response.getWriter().println("</table>");
-                response.getWriter().println("<br><center><a href='admin.jsp'>Back</a></center>");
-                response.getWriter().println("</body></html>");
-            }
-                
-                
             // ================= VIEW CLASS TT (NEW PAGE) =================
             else if ("viewClassTTPage".equals(action)) {
 
@@ -327,52 +290,9 @@ public class server extends HttpServlet {
 
                 response.getWriter().println(
                         "<br><center><a href='admin.jsp'>Back</a></center>");
-                response.getWriter().println("<br><center><a href='admin.jsp'>Back</a></center>");
 
                 response.getWriter().println("</body>");
                 response.getWriter().println("</html>");
-            }
-                  // ================= VIEW EXAM TIMETABLE (NEW PAGE) =================
-            else if ("viewExamTTPage".equals(action)) {
-
-                String cls = request.getParameter("class");
-
-                PreparedStatement ps = con.prepareStatement(
-                        "SELECT * FROM exam_timetable WHERE class=?");
-                ps.setString(1, cls);
-
-                ResultSet rs = ps.executeQuery();
-
-                response.setContentType("text/html");
-
-                response.getWriter().println("<html><head><title>Exam Timetable</title>");
-                response.getWriter().println("<style>");
-                response.getWriter().println("body{font-family:Arial;background:#f4f4f4;text-align:center;}");
-                response.getWriter().println("table{margin:auto;width:80%;border-collapse:collapse;background:white;}");
-                response.getWriter().println("th{background:#dc2626;color:white;padding:10px;}");
-                response.getWriter().println("td{padding:10px;border:1px solid #ddd;}");
-                response.getWriter().println("</style></head><body>");
-
-                response.getWriter().println("<h2>Exam Timetable - " + HtmlUtil.escapeHtml(cls) + "</h2>");
-
-                response.getWriter().println("<table>");
-                response.getWriter().println("<tr><th>ID</th><th>Class</th><th>Subject</th><th>Date</th><th>Time</th></tr>");
-
-                while (rs.next()) {
-                    response.getWriter().println(
-                        "<tr>" +
-                        "<td>" + HtmlUtil.escapeHtml(String.valueOf(rs.getInt("id"))) + "</td>" +
-                        "<td>" + HtmlUtil.escapeHtml(rs.getString("class")) + "</td>" +
-                        "<td>" + HtmlUtil.escapeHtml(rs.getString("subject")) + "</td>" +
-                        "<td>" + HtmlUtil.escapeHtml(rs.getString("exam_date")) + "</td>" +
-                        "<td>" + HtmlUtil.escapeHtml(rs.getString("time")) + "</td>" +
-                        "</tr>"
-                    );
-                }
-
-                response.getWriter().println("</table>");
-                response.getWriter().println("<br><a href='admin.jsp'>Back</a>");
-                response.getWriter().println("</body></html>");
             }
         } catch (Exception e) {
             e.printStackTrace();

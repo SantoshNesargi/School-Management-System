@@ -124,15 +124,10 @@ Open Students Page
 </form>
 </div>
 
-<!-- ----------view by class-------- -->
-<div class="card hidden" id="search">
-<h3>Search Student</h3>
-<form action="server" method="get">
-<input type="hidden" name="action" value="search">
-<input type="text" name="class" placeholder="Student ID">
-<button type="submit">Search</button>
-</form>
-</div>
+<!-- ----------view by class--------
+     (the original duplicate "search" form was collapsed into the
+      existing "classview" block below — same action, same purpose) -->
+
 <!-- ================= CLASS VIEW ================= -->
 <div class="card hidden" id="classview">
 <h3>View By Class</h3>

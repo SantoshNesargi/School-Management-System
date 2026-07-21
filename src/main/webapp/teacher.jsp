@@ -189,18 +189,22 @@ if (user == null) {
 function getStudentDetails() {
     let id = document.getElementById("sid").value;
 
-    if (id === "") return;
+    if (id === "") {
+        document.getElementById("sname").value = "";
+        document.getElementById("sclass").value = "";
+        return;
+    }
 
     fetch("teacher?action=getStudentName&student_id=" + id)
     .then(res => res.json())
     .then(data => {
         document.getElementById("sname").value = data.name;
         document.getElementById("sclass").value = data.class;
-        .then(data => {
-            console.log("DATA:", data);
-            document.getElementById("sname").value = data.name;
-            document.getElementById("sclass").value = data.class;
-        })
+    })
+    .catch(err => {
+        console.error("getStudentDetails failed:", err);
+        document.getElementById("sname").value = "";
+        document.getElementById("sclass").value = "";
     });
 }
 </script>
